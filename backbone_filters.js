@@ -8,7 +8,12 @@
 					filterRoute = this._routeToRegExp(filterRoute);
 				} 
 				if(filterRoute.test(fragment)){
-					return !func.apply(this, args);
+					if(_.isFunction(func)){
+						return !func.apply(this, args);
+					}else{
+						return !this[func].apply(this, args);
+					}
+					
 				}
 				return false;
 			}, this);

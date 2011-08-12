@@ -1,19 +1,20 @@
 Disclaimer:
 This plugin only works agains pre 0.5 versions of Backbone.  
 
-Useage:
+Usage:
 
 In your controller you can now add:
 
 before: {
-	'some_route_regex' : before_func,
-	'some_other_route_regex' : before_func2,	
+	'some_route_regex' : 'before_func',
+	'some_other_route_regex' : function(){},	
 },
 
 after: {
-	'some_route_regex' : after_func,
-	'some_other_route_regex' : after_func2,	
+	'some_route_regex' : 'after_func',
+	'some_other_route_regex' : function(){},	
 }
 
 Your filters will be called and if a filter returns false, the filter chain is halted.
-If a before filter chain is halted, the action in the controller will not be called.
+If a before filter chain is halted, the action in the controller will not be called. Your
+filters will receive the same arguments that get passed to the actions.
