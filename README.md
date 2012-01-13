@@ -1,7 +1,6 @@
-Disclaimer:
-This fork has been updated to work with Backbone 0.5.3
+_Disclaimer: This fork has been updated to work with Backbone 0.5.3_
 
-Usage:
+# Usage
 
 Include `backbone_filters.js` after Backbone.
 
@@ -10,7 +9,7 @@ In your router you can now add:
 ```javascript
 before: {
 	'^clerks' : function() {
-		/* do stuff */
+		/* do stuff to all routes starting with 'clerks' */
 		/* return false to halt execution */
 	},
 	'another reg ex' : function() { }
