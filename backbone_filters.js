@@ -12,6 +12,7 @@
 					filterRoute = new RegExp(filterRoute);
 				}
 				if (filterRoute.test(fragment)) {
+					args.unshift(fragment);
 					var result = (_.isFunction(func) ? func.apply(this, args) : this[func].apply(this, args));
 					return _.isBoolean(result) && result === false;
 				}
