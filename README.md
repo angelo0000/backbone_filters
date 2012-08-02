@@ -8,18 +8,18 @@ In your router you can now add:
 
 ```javascript
 before: {
-	'^clerks' : function() {
+	'^clerks' : function(route) {
 		/* do stuff to all routes starting with 'clerks' */
 		/* return false to halt execution */
 	},
-	'another reg ex' : function() { }
+	'another reg ex' : function(route) { }
 },
 
 after: {
-	'^clerks' : function() {
+	'^clerks' : function(route) {
 		/* do stuff */
 	},
-	'another reg ex' : function() { }	
+	'another reg ex' : function(route) { }	
 }
 ```
 
