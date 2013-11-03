@@ -1,4 +1,4 @@
-_Disclaimer: This fork has been updated to work with Backbone 0.5.3_
+_Disclaimer: This fork has been updated to work with Backbone 1.1.0_
 
 # Usage
 

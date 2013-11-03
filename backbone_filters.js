@@ -3,27 +3,24 @@
 		before: {},
 		after: {},
 		_runFilters: function(filters, fragment, args) {
-			if (_(filters).isEmpty()) {
+			if (_.isEmpty(filters)) {
 				return true;
 			}
-			var failingFilter = _(filters).detect(function(func, filterRoute) {
-				if (!_.isRegExp(filterRoute)) {
-					// filterRoute = this._routeToRegExp(filterRoute);
-					filterRoute = new RegExp(filterRoute);
-				}
+			return _.find(filters, function(func, filterRoute) {
+				filterRoute = new RegExp(filterRoute);
 				if (filterRoute.test(fragment)) {
-					var result = (_.isFunction(func) ? func.apply(this, args) : this[func].apply(this, args));
-					return _.isBoolean(result) && result === false;
+					return (_.isFunction(func) ? func.apply(this, args) : this[func].apply(this, args));
 				}
-				return false;
-			},
-			this);
-						
-			return failingFilter ? false : true;
+				return true;
+			}, this);
 		},
 		route: function(route, name, callback) {
-			Backbone.history || (Backbone.history = new Backbone.History);
 			if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+			if (_.isFunction(name)) {
+				callback = name;
+				name = '';
+			}
+			if (!callback) callback = this[name];
 			Backbone.history.route(route, _.bind(function(fragment) {
 				var args = this._extractParameters(route, fragment);
 				if (this._runFilters(this.before, fragment, args)) {
